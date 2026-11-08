@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "secure-tcp-gateway"
+version = "0.1.0"
+description = "Inline AES-GCM TCP payload protection between two Linux gateways (DH handshake, NFQUEUE)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = ["cryptography>=41.0"]
+
+[project.optional-dependencies]
+nfqueue = ["NetfilterQueue>=1.1.0"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+scgw = "scgw.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "tests"]
